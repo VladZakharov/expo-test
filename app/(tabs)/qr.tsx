@@ -1,5 +1,5 @@
 import { CameraView, CameraType, useCameraPermissions } from 'expo-camera';
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useRef, useState} from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import {useFocusEffect} from "expo-router";
 
@@ -7,6 +7,7 @@ const Qr: React.FC = () => {
   const [isEnabled, setIsEnabled] = useState(false);
   const [facing, setFacing] = useState<CameraType>('back');
   const [permission, requestPermission] = useCameraPermissions();
+  const isBarcodeScanned = useRef(false);
 
   useFocusEffect(
     useCallback(() => {
@@ -44,7 +45,10 @@ const Qr: React.FC = () => {
           barcodeTypes: ["qr"],
         }}
         onBarcodeScanned={result => {
-          alert(JSON.stringify(result));
+          if (!isBarcodeScanned.current) {
+            isBarcodeScanned.current = true;
+            alert(JSON.stringify(result));
+          }
         }}
       >
         <View style={styles.buttonContainer}>
