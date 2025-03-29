@@ -34,6 +34,24 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="qr"
+        options={{
+          title: 'QR-Code',
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons name={focused ? 'information-circle' : 'information-circle-outline'} color={color} size={24}/>
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="audio"
+        options={{
+          title: 'Audio',
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons name={focused ? 'information-circle' : 'information-circle-outline'} color={color} size={24}/>
+          ),
+        }}
+      />
     </Tabs>
   );
 }
